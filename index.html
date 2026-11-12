@@ -346,7 +346,7 @@
       <!-- KHOẢNG TRỐNG Ở GIỮA ĐỂ LỘ TRỌN VẸN KHUÔN MẶT -->
       <div class="flex-grow min-h-[200px] sm:min-h-[230px]"></div>
 
-      <!-- Bottom Section: Tên, Nút chọn người nhận và Ngày tháng phía dưới -->
+      <!-- Bottom Section: Tên, Tên người nhận trên URL và Ngày tháng phía dưới -->
       <div class="hero-animate z-10 pb-4 space-y-3">
         <p class="font-serif italic text-[17px] text-white/95 drop-shadow-md">
           của
@@ -358,24 +358,16 @@
           </h2>
         </div>
 
-        <!-- Khung chọn Đối tượng nhận thư -->
+        <!-- Khung hiển thị Tên Khách Mời (Chỉ đọc từ URL, không bấm sửa) -->
         <div class="pt-1">
           <p class="text-[11.5px] font-bold text-white/90 uppercase tracking-widest mb-1 drop-shadow-xs">
             Trân trọng kính gửi
           </p>
-          <button
-            type="button"
-            onclick="openGuestModal()"
-            title="Nhấn để chọn đối tượng nhận thiệp"
-            class="group inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-2xl bg-white/25 hover:bg-white/35 backdrop-blur-xs border border-white/40 transition-all cursor-pointer shadow-md"
-          >
+          <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-2xl bg-white/25 backdrop-blur-xs border border-white/40 shadow-md">
             <span id="guest-recipient-hero" class="font-serif text-[22px] font-bold text-white leading-tight drop-shadow-sm">
               Bạn bè & Người thân
             </span>
-            <svg class="w-3.5 h-3.5 text-white opacity-80 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-            </svg>
-          </button>
+          </div>
         </div>
 
         <div class="pt-1">
@@ -401,7 +393,7 @@
 
         <div class="space-y-3.5 text-[14.2px] text-ink/85 leading-[1.75] text-justify font-medium">
           <p>
-            Sau bao ngày tháng miệt mài đèn sách, cuối cùng chặng đường thanh xuân tại giảng đường đại học của Khang cũng sắp chạm tới cột mốc trọn vẹn nhất — <strong>Lễ Tốt Nghiệp năm 2026</strong>.
+            Sau bao ngày tháng miệt mài đèn sách, cuối cùng chặng đường thanh xuân tại giảng đường đại học của Khang cũng sắp chạm tới cột mốc trọn vẹn nhất — <strong>Lễ Tốt Nghiệp năm 2026</strong>[cite: 7].
           </p>
           <p>
             Hành trình này sẽ không thể trọn vẹn nếu thiếu đi tình yêu thương, sự đồng hành và những lời động viên ấm áp từ mọi người. Khang trân trọng kính mời <strong id="guest-recipient-inline" class="text-sage-700">bạn</strong> đến chung vui, lưu giữ những khung hình kỷ niệm rạng rỡ nhất trong ngày đặc biệt này.
@@ -902,22 +894,6 @@
   </main>
 
   <!-- =====================================================================
-       FLOATING GUEST SELECTOR BUTTON (Top-Left)
-  ====================================================================== -->
-  <button
-    type="button"
-    onclick="openGuestModal()"
-    aria-label="Chọn khách mời"
-    title="Chọn tên khách mời & lấy link riêng"
-    class="fixed top-4 left-4 z-40 h-11 px-3.5 rounded-full bg-white/95 hover:bg-sage-50 text-sage-700 border border-sage-200 shadow-lg flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer backdrop-blur-xs text-[12.5px] font-bold"
-  >
-    <svg class="w-4 h-4 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-    </svg>
-    <span id="floating-guest-label">Chọn khách mời</span>
-  </button>
-
-  <!-- =====================================================================
        FLOATING MUSIC TOGGLE BUTTON (Top-Right)
   ====================================================================== -->
   <button
@@ -963,57 +939,6 @@
   </div>
 
   <!-- =====================================================================
-       GUEST SELECTOR & LINK GENERATOR MODAL
-  ====================================================================== -->
-  <div id="guest-modal" onclick="closeGuestModal()" class="fixed inset-0 z-50 bg-ink/75 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="relative max-w-[420px] w-full bg-cream rounded-3xl border border-sage-200 p-5 shadow-2xl max-h-[85vh] flex flex-col" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between pb-3 border-b border-sage-200">
-        <div>
-          <h4 class="font-serif text-[22px] font-bold text-sage-700 leading-tight">Chọn đối tượng nhận thiệp</h4>
-          <p class="text-[11.5px] text-ink/65">Tự động chỉnh giờ 09:30 (Bạn bè) & 11:00 (Gia đình)</p>
-        </div>
-        <button type="button" onclick="closeGuestModal()" class="w-8 h-8 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 font-bold flex items-center justify-center cursor-pointer">
-          ✕
-        </button>
-      </div>
-
-      <!-- Copy Personalized Link Bar -->
-      <div class="mt-3 p-3 rounded-2xl bg-white border border-sage-200 flex items-center justify-between gap-2">
-        <div class="min-w-0">
-          <p class="text-[11px] font-semibold text-ink/60">Đang xem thiệp của:</p>
-          <p id="modal-current-guest" class="text-[13.5px] font-bold text-sage-700 truncate">Bạn bè & Người thân (09:30)</p>
-        </div>
-        <button
-          type="button"
-          onclick="copyGuestLink()"
-          class="shrink-0 px-3 py-1.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white text-[12px] font-bold shadow-2xs cursor-pointer"
-        >
-          Sao chép link
-        </button>
-      </div>
-
-      <!-- Scrollable Lists -->
-      <div class="overflow-y-auto mt-3 pr-1 space-y-4">
-        <!-- Group 1: Bạn bè (09:30) -->
-        <div>
-          <p class="text-[12px] font-bold text-sage-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <span>🎓 Nhóm Bạn bè (09:30)</span>
-          </p>
-          <div id="friends-grid" class="grid grid-cols-2 gap-1.5"></div>
-        </div>
-
-        <!-- Group 2: Gia đình (11:00) -->
-        <div>
-          <p class="text-[12px] font-bold text-sage-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <span>🏡 Nhóm Gia đình (11:00)</span>
-          </p>
-          <div id="family-grid" class="grid grid-cols-2 gap-1.5"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =====================================================================
        TOAST NOTIFICATION & LIGHTBOX MODAL
   ====================================================================== -->
   <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 -translate-y-2">
@@ -1034,21 +959,9 @@
   </div>
 
   <!-- =====================================================================
-       JAVASCRIPT INTERACTIVITY
+       JAVASCRIPT INTERACTIVITY (URL PARSING ONLY)
   ====================================================================== -->
   <script>
-    const FRIENDS_LIST = [
-      'bạn Ngọc', 'bạn Minh Phi', 'bạn Thanh Nguyên', 'bạn Quyến',
-      'bạn Kiên', 'bạn Hoài Nam', 'bạn Thanh Huyền', 'bạn Phấn',
-      'bạn Huy', 'bạn Tân', 'bạn Trâm', 'bạn Ngân',
-      'bạn An', 'bạn Khải', 'bạn Thiết', 'bạn Bảo'
-    ];
-
-    const FAMILY_LIST = [
-      'em Quyên', 'chị Như', 'em Sửu', 'chị Ngọc',
-      'Mẹ', 'Cha', 'Má Ba', 'Má Hai'
-    ];
-
     let currentGuestName = 'Bạn bè & Người thân';
     let currentEventHour = 9;
     let currentEventMinute = 30;
@@ -1059,90 +972,37 @@
       return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
     }
 
-    function applyGuestPersonalization(guestName, updateUrl = false) {
+    function applyGuestPersonalization(guestName) {
       const cleanName = guestName.trim();
       const displayName = formatDisplayName(cleanName);
 
-      const isFriendGroup = cleanName.toLowerCase().startsWith('bạn ') || cleanName === 'Bạn bè & Người thân';
+      // Phân loại tự động giờ: Nhóm bạn bè/mặc định (09:30), Nhóm gia đình (11:00 nếu có chữ ba, mẹ, má, cha, v.v.)
+      const lower = cleanName.toLowerCase();
+      const isFamily = lower.includes('mẹ') || lower.includes('cha') || lower.includes('má') || lower.includes('chị') || lower.includes('em');
 
       currentGuestName = cleanName;
-      currentEventHour = isFriendGroup ? 9 : 11;
-      currentEventMinute = isFriendGroup ? 30 : 0;
+      currentEventHour = isFamily ? 11 : 9;
+      currentEventMinute = isFamily ? 0 : 30;
 
       const formattedTime = `${String(currentEventHour).padStart(2, '0')}:${String(currentEventMinute).padStart(2, '0')}`;
 
       document.getElementById('guest-recipient-hero').textContent = displayName;
       document.getElementById('guest-recipient-letter').textContent = displayName;
       document.getElementById('guest-recipient-inline').textContent = cleanName === 'Bạn bè & Người thân' ? 'bạn' : cleanName;
-      document.getElementById('floating-guest-label').textContent = displayName;
 
       document.getElementById('event-time-display').textContent = formattedTime;
-      document.getElementById('event-group-badge').textContent = isFriendGroup ? 'Khung giờ Bạn bè' : 'Khung giờ Gia đình';
-      document.getElementById('modal-current-guest').textContent = `${displayName} (${formattedTime})`;
-
-      if (updateUrl && window.history && window.history.replaceState) {
-        const url = new URL(window.location.href);
-        if (cleanName === 'Bạn bè & Người thân') {
-          url.searchParams.delete('to');
-        } else {
-          url.searchParams.set('to', cleanName);
-        }
-        window.history.replaceState({}, '', url.toString());
-      }
+      document.getElementById('event-group-badge').textContent = isFamily ? 'Khung giờ Gia đình' : 'Khung giờ Bạn bè';
 
       updateCountdown();
     }
 
-    function renderGuestModalLists() {
-      const friendsGrid = document.getElementById('friends-grid');
-      const familyGrid = document.getElementById('family-grid');
-
-      friendsGrid.innerHTML = FRIENDS_LIST.map((name) => `
-        <button type="button" onclick="selectGuest('${name}')"
-          class="text-left px-3 py-2 rounded-xl border border-sage-200 bg-white hover:bg-sage-100/80 hover:border-sage-400 text-[13px] font-semibold text-ink transition-all cursor-pointer truncate">
-          ${formatDisplayName(name)}
-        </button>
-      `).join('');
-
-      familyGrid.innerHTML = FAMILY_LIST.map((name) => `
-        <button type="button" onclick="selectGuest('${name}')"
-          class="text-left px-3 py-2 rounded-xl border border-sage-200 bg-white hover:bg-sage-100/80 hover:border-sage-400 text-[13px] font-semibold text-ink transition-all cursor-pointer truncate">
-          ${formatDisplayName(name)}
-        </button>
-      `).join('');
-    }
-
-    function selectGuest(name) {
-      applyGuestPersonalization(name, true);
-      closeGuestModal();
-      const timeStr = `${String(currentEventHour).padStart(2, '0')}:${String(currentEventMinute).padStart(2, '0')}`;
-      showToast(`Đã chuyển thiệp sang: ${formatDisplayName(name)} (${timeStr})`);
-    }
-
-    function openGuestModal() {
-      const modal = document.getElementById('guest-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeGuestModal() {
-      const modal = document.getElementById('guest-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function copyGuestLink() {
-      copyText(window.location.href, `Đã sao chép link mời riêng cho ${formatDisplayName(currentGuestName)}!`);
-    }
-
     function initGuestFromUrl() {
-      renderGuestModalLists();
       const params = new URLSearchParams(window.location.search);
       const toParam = params.get('to');
       if (toParam && toParam.trim() !== '') {
-        applyGuestPersonalization(toParam.trim(), false);
+        applyGuestPersonalization(toParam.trim());
       } else {
-        applyGuestPersonalization('Bạn bè & Người thân', false);
+        applyGuestPersonalization('Bạn bè & Người thân');
       }
     }
 
@@ -1224,20 +1084,6 @@
         box.classList.remove('opacity-100', 'translate-y-0');
         box.classList.add('opacity-0', '-translate-y-2');
       }, 2500);
-    }
-
-    function copyText(value, successMsg) {
-      const tempInput = document.createElement('input');
-      tempInput.value = value;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try {
-        document.execCommand('copy');
-        showToast(successMsg);
-      } catch (err) {
-        showToast('Không thể sao chép tự động');
-      }
-      document.body.removeChild(tempInput);
     }
 
     function openGoogleMaps() {
